@@ -6,7 +6,7 @@
     <img src="https://badgen.net/github/commits/iotranvn/aki-bot" width="75" height="22"/>
     <img src="https://visitor-badge.glitch.me/badge?page_id=iotranvn.aki-bot" height="18"/>
 </p>
-<p align ="center"><a href="https://discord.gg/ExD5MkpH">🌐Support Server Discord</a> • <a href="https://github.com/iotranvn/aki-bot/archive/refs/heads/master.zip">Download</a></p>
+<p align ="center"><a href="">🌐Support Server Discord (comming soon)</a> • <a href="https://github.com/iotranvn/aki-bot/archive/refs/heads/master.zip">Download</a></p>
 <hr />
 
 # Introduce 
@@ -35,7 +35,7 @@
 ### Contact
 
 <p>Anh Duc: Discord - Anh Duc#5954 | <a href="https://www.facebook.com/profile.php?id=100026348631060">Facebook</a> | <a href="https://github.com/CCcutcanh">Github</a></p>
-<p>King: Discord - King.#4732 | <a href="https://www.facebook.com/letranhoanglanvn">Facebook</a> | <a href= "https://github.com/iotranvn">Github</a></p>
+<p>King: Discord - King.#4732</p>
 <p><a href="https://www.facebook.com/profile.php?id=100086701778255">Fanpage Facebook</a>
 
 #### Links
