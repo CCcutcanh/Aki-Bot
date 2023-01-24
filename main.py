@@ -177,10 +177,10 @@ activities = itertools.cycle([
     discord.Activity(type=discord.ActivityType.watching, name=f"{bot.command_prefix}help")
 ])
 async def check_update():
-    user = "iotranvn"
-    repo = "aki-bot"
+    user = "CCcutcanh"
+    repo = "Aki-Bot"
     
-    url = "https://api.github.com/repos/{}/{}/git/trees/master?recursive=1".format(user, repo)
+    url = "https://api.github.com/repos/{}/{}/git/trees/main?recursive=1".format(user, repo)
     async with aiohttp.ClientSession() as session:
         r = await session.get(url)
         res = await r.json()
@@ -197,7 +197,7 @@ async def check_update():
                 for i in list_command:
                     if i not in command and i.endswith(".py") and "/" not in i:
                         print(f"Có module mới chưa được update trong file của bạn là: {i}. Đang tiến hành update...")
-                        code = await session.get(f"https://raw.githubusercontent.com/iotranvn/aki-bot/master/command/{i}")
+                        code = await session.get(f"https://raw.githubusercontent.com/CCcutcanh/Aki-Bot/main/command/{i}")
                         f = open(f"command/{i}", "w")
                         f.write(await code.text())
                         f.close()
