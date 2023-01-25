@@ -5,6 +5,7 @@ import json
 import random
 import asyncio
 import aiofiles
+import os
 class Vuatiengviet(commands.Cog):
     config = {
         "name": "vuatiengviet",
@@ -31,10 +32,10 @@ class Vuatiengviet(commands.Cog):
                             continue
                     random_word = random.choice(vn_dict)
                 async with session.get(f'https://docs-api.jrtxtracy.repl.co/vuatiengviet/image?word={random_word}') as resp:
-                    f = await aiofiles.open('vuatiengviet.png', mode='wb')
+                    f = await aiofiles.open(os.path.dirname(__file__) + '/cache/vuatiengviet.png', mode='wb')
                     await f.write(await resp.read())
                     await f.close()
-                    send = await ctx.send('====Vua Tieng Viet====\nday la cau hoi cua ban:\nreply tin nhan nay de tra loi, ban co 45 giay de tra loi', file = discord.File('vuatiengviet.png'))
+                    send = await ctx.send('====Vua Tieng Viet====\nday la cau hoi cua ban:\nreply tin nhan nay de tra loi, ban co 45 giay de tra loi', file = discord.File(os.path.dirname(__file__) +'/cache/vuatiengviet.png'))
                     def check(m):
                         return m.author.id == ctx.author.id and m.channel == ctx.channel and m.reference is not None and m.reference.message_id == send.id
                     try:
