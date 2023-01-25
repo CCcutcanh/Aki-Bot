@@ -3,7 +3,7 @@
 <p align="center">Một dự án Bot Discord với thư viện <strong>discord.py</strong> nhằm giúp mọi người trên mọi thiết bị đều có thể tạo bot</p>
 <p align="center">
     <img src="https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54" width="70" height="22" style= "display: inline"/>
-    <img src="https://github.com/CCcutcanh/Aki-Bot" width="75" height="22"/>
+    <img src="https://badgen.net/github/commits/CCcutcanh/Aki-Bot" width="75" height="22"/>
     <img src="https://visitor-badge.glitch.me/badge?page_id=CCcutanh.Aki-Bot" height="18"/>
 </p>
 <p align ="center"><a href="https://www.facebook.com/profile.php?id=100026348631060&mibextid=ZbWKwL">🌐Hỏi admin để được hỗ trợ về bot</a> • <a href="https://github.com/CCcutcanh/Aki-Bot/archive/refs/heads/main.zip">Download</a></p>
