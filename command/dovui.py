@@ -15,7 +15,7 @@ class Dovui(commands.Cog):
     async def dovui(self, ctx):
         try:
             async with aiohttp.ClientSession() as session:
-                get = await session.get('https://api.phamvandien.xyz/game/dovui')
+                get = await session.get('https://docs-api.jrtxtracy.repl.co/game/dovui')
                 data_txt = await get.text()
                 data_json = json.loads(data_txt)
                 data = {}
