@@ -30,7 +30,7 @@ class Vuatiengviet(commands.Cog):
                         except:
                             continue
                     random_word = random.choice(vn_dict)
-                async with session.get(f'https://api.phamvandien.xyz/vuatiengviet/image?word={random_word}') as resp:
+                async with session.get(f'https://docs-api.jrtxtracy.repl.co/vuatiengviet/image?word={random_word}') as resp:
                     f = await aiofiles.open('vuatiengviet.png', mode='wb')
                     await f.write(await resp.read())
                     await f.close()
