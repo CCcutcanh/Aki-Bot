@@ -4,13 +4,13 @@ import json
 import aiofiles
 import aiohttp
 import sys
-import requests
 import random
 import io
 import main
 import random
 from command.cache.list_color import list_color
 import aiofiles
+import os
 class Dhbc(commands.Cog):
     config = {
         "name": "dhbc",
@@ -37,22 +37,23 @@ class Dhbc(commands.Cog):
                 "https://goatbotserver.onrender.com/api/duoihinhbatchu"
             ]
             random_dhbc = random.choice(url_DHBC)
-            get_DHBC = requests.get(random_dhbc)
-            data_DHBC = get_DHBC.text
-            json_DHBC = json.loads(data_DHBC)
+            async with aiohttp.ClientSession() as session:
+                get_DHBC = await session.get(random_dhbc)
+                data_DHBC = await get_DHBC.text()
+                json_DHBC = json.loads(data_DHBC)
             embed = discord.Embed(colour = random.choice(list_color), title = "===ĐUỔI HÌNH BẮT CHỮ===", description = 'đây là câu hỏi của bạn\nreply "gợi ý" nếu bạn muốn xem gợi ý cho câu hỏi(50$/lần)')
             if random_dhbc == url_DHBC[0]:
                 image_DHBC = json_DHBC['result']['link']
                 sokt = json_DHBC['result']['sokitu']
                 dapan = json_DHBC['result']['tukhoa']
-                get_image_DHBC = requests.get(image_DHBC)
-                file = open("dhbc.png", "wb")
-                file.write(get_image_DHBC.content)
-                file.close()
+                async with aiohttp.ClientSession() as session:
+                    img = await session.get(image_DHBC)
+                    img = await img.read()
+                    f = await aiofiles.open(os.path.dirname(__file__) + "/cache/dhbc.png", mode="wb")
+                    await f.write(img)
+                    await f.close()
                 embed.set_image(url = "attachment://dhbc.png")
-                send = await ctx.send(
-                    embed = embed,
-                    file=discord.File('dhbc.png'))
+                send = await ctx.send(embed=embed,file=discord.File(os.path.dirname(__file__) + "/cache/dhbc.png", filename="dhbc.png"))
                 if "a" in random_dhbc:
                     message = await wait_message(send)
                     if str(message.content.lower()) == dapan:
@@ -78,27 +79,27 @@ class Dhbc(commands.Cog):
                 async with aiohttp.ClientSession() as session:
                     img = await session.get(img)
                     img = await img.read()
-                    f = await aiofiles.open("dhbc.png", mode="wb")
+                    f = await aiofiles.open(os.path.dirname(__file__) + "/cache/dhbc.png", mode="wb")
                     await f.write(img)
                     await f.close()
                 embed.set_image(url = "attachment://dhbc.png")
-                send = await ctx.send(embed=embed,file=discord.File('dhbc.png'))
+                send = await ctx.send(embed=embed,file=discord.File(os.path.dirname(__file__) + "/cache/dhbc.png", filename="dhbc.png"))
                 message = await wait_message(send)
                 if message.content.upper() == answer:
                     await ctx.send(f'bạn đã trả lời đúng, đáp án là: {answer}')
                 elif message.content.lower() == "gợi ý":
                     if money >= 50:
                         await main.update(ctx.author.id, 50, "lose_wallet")
-                        await ctx.send(f"Gợi ý: từ này gồm {goi_y} kí tự (tiếp tục reply câu hỏi ở trên để trả lời)")
+                        await ctx.send(f"gợi ý: từ này gồm {goi_y} kí tự (tiếp tục reply câu hỏi ở trên để trả lời)")
                     else:
-                        await ctx.send("bạn không đủ 50$ để xem gợi ý(tiếp tục reply câu hỏi ở trên để trả lời)")
+                        await ctx.send("bạn không đủ 50$ để xem gợi ý (tiếp tục reply câu hỏi ở trên để trả lời)")
                     message = await wait_message(send)
                     if message.content.upper() == answer:
                         await ctx.send(f"bạn đã trả lời đúng, đáp án là: {answer}")
                     else:
-                        await ctx.send(f"sai rồi, đáp án là {answer}")
+                        await ctx.send(f"sai rồi đáp án là {answer}")
                 else:
-                    await ctx.send(f"sai rồi, đáp án là {answer}")
+                    await ctx.send(f"sai rồi đáp án là {answer}")
                     
         except Exception as e:
             print(e)
@@ -106,4 +107,4 @@ class Dhbc(commands.Cog):
                 'hiện tại lệnh bạn đang sử dụng đã gặp lỗi, hãy thử lại sau. xin lỗi vì sự cố này'
             )
 async def setup(bot):
-    await bot))
+    await bot.add_cog(Dhbc(bot))
