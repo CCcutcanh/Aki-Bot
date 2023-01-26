@@ -157,7 +157,7 @@ async def main():
 ║ CHỦ SỞ HỮU BOT: {config['admin_name']}({config['admin_id']})                          
 ║ TÊN BOT:{config['bot_name']}  
 ║ PREFIX:{config['prefix']}   
-║ PHIÊN BẢN:{thong_bao['version']}                       
+║ PHIÊN BẢN: v0.0.1                       
 ║ SỐ MODULE(LỆNH) HIỆN CÓ TRONG BOT: {dem_lenh}                   
 ╚═════════════════════════════════════════════════════╝
 ''')
@@ -218,3 +218,4 @@ except Exception as e:
     loop.run_until_complete(main())
 
 # =============================================#
+#Chúc bạn chạy bot thành công
