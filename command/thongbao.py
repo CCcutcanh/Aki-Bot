@@ -13,6 +13,7 @@ class Thongbao(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
     @commands.command()
+    @commands.has_permissions(administrator=True)
     async def thongbao(self,ctx):
         try:
             def check(message):
@@ -24,24 +25,22 @@ class Thongbao(commands.Cog):
             await ctx.send('cậu muốn nội dung của tin nhắn là gì? 💬')
             desc = await self.bot.wait_for('message', check=check)
 
-            await ctx.send('Nhập id channel cậu muốn gửi đến? 📻')
+            await ctx.send('Nhập id channel cậu muốn gửi đến? 📻 (Gửi thêm ảnh nếu bạn muốn có ảnh trong embed thông báo)')
             channelID1 = await self.bot.wait_for('message',check=check)
-            channelID = int(channelID1.content)
-
-            await ctx.send('cậu có muốn muốn gửi ảnh(LINK ẢNH) cùng với tin nhắn không? nếu không muốn gửi cùng thì gõ `none` 📷')
-            picurl = await self.bot.wait_for('message', check=check)
-            if picurl.content == "none":
-                channel = self.bot.get_channel(channelID)
-                embed = discord.Embed(title=title.content, description=desc.content, color=random.choice(list_color))
-                await channel.send(embed=embed)
-            else:
-                channel = self.bot.get_channel(channelID)
-                embed = discord.Embed(title=title.content, description=desc.content, color=random.choice(list_color))
-                embed.set_image(url=picurl.content)
-                await channel.send(embed=embed)
+            channel_id = int(channelID1.content)
+            channel = self.bot.get_channel(channel_id)
+            embed = discord.Embed(title=title.content, description=desc.content, color=random.choice(list_color))
+            img = channelID1.attachments
+            if img:
+                for i in img:
+                    embed.set_image(url=str(i.url))
+            await channel.send(embed=embed)
         except Exception as e:
             print(e)
-    
+    @thongbao.error
+    async def thongbao_error(error, ctx):
+        if isinstance(error, MissingPermissions):
+            await ctx.send("bạn phải là admin mới có thể sử dụng lệnh")
 
 
 async def setup(bot):
