@@ -1,4 +1,4 @@
-![Python](https://cdn.discordapp.com/attachments/1044645181577760869/1044941280402210856/taoanhdep_mega_logo_66513.jpg)
+![Python](https://ibb.co/0yjxwPy)
 <h1 align=center>AKI PROJECT</h1>
 <p align="center">Một dự án Bot Discord với thư viện <strong>discord.py</strong> nhằm giúp mọi người trên mọi thiết bị đều có thể tạo bot</p>
 <p align="center">
