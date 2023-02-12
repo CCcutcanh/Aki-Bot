@@ -1,4 +1,4 @@
-<img src="https://ibb.co/0yjxwPy"/>
+<img src="https://i.ibb.co/nMsFWhM/taoanhdep-mega-logo-66513.jpg"/>
 <h1 align=center>AKI PROJECT</h1>
 <p align="center">Một dự án Bot Discord với thư viện <strong>discord.py</strong> nhằm giúp mọi người trên mọi thiết bị đều có thể tạo bot</p>
 <p align="center">
